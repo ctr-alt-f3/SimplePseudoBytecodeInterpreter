@@ -83,7 +83,7 @@ int main() {
     }
     decode((__int128_t *)&opcode);
     printf("decoded\n");
-    interpret();
+    interpret();                         //does not work
 }*/
   unsigned char size = 0;
   fseek(fp, 0L, SEEK_END);
@@ -93,7 +93,7 @@ int main() {
   fread(buff, size, 1, fp);
   unsigned int pointer = 0;
   void *opcode = 0;
-  while (/*(rozmiar / 32) >= pointer*/ 1) {
+  while (/*(rozmiar / 32) >= pointer /*this does not work too* */ 1) {
     opcode = (&buff + pointer);
     decode((__int128_t *)opcode);
     //    printf("decoded\n");
@@ -101,7 +101,7 @@ int main() {
     pointer += 16;
   }
   //
-  /*  printf("mialo być wcześniej,ale...\n");
+  /*  printf("debugging info...\n");
     printf("reg0 = %d\n", regvs[0]);
     printf("reg1 = %d\n", regvs[1]);
     printf("reg2 = %d\n", regvs[2]);*/
