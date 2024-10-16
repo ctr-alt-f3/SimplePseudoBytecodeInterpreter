@@ -27,7 +27,6 @@ void decode(__int128_t *bytecode) {
   reg3 = (*bytecode & 0x000F);
 }
 void interpret() {
-  // printf("interpretation started - please wait\n");
   switch (instruction) {
   case ADD_OP:
     regvs[reg1] += regvs[reg2];
