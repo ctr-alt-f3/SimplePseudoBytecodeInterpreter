@@ -3,7 +3,9 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+///
 __int128_t regvs[3];
+//
 int instruction = 0;
 int reg3 = 0; // also functioning as imm value
 int reg1 = 0;
@@ -62,12 +64,48 @@ void interpret() {
     printf("reg1 = %d\n", regvs[1]);
     printf("reg2 = %d\n", regvs[2]);
     break;
+
   default:
     printf("interpretation failed - wrong opcode - %d\n", instruction);
     break;
   }
 }
 int main() {
+  //
   memset(regvs, 0, sizeof(regvs));
+  /*  FILE *fp = fopen("instrukcje.m", "rb");
+    //
+
+    /*while (1) {
+      if (fgets((char *)&opcode, sizeof(opcode), fp)) {
+        break;
+      }
+      decode((__int128_t *)&opcode);
+      printf("decoded\n");
+      interpret();                         //does not work
+  }*/
+  /*unsigned char size = 0;
+  fseek(fp, 0L, SEEK_END);
+  size = ftell(fp);
+  rewind(fp);
+  void *buff = malloc(size + 1);
+  fread(buff, size, 1, fp);
+  unsigned int pointer = 0;
+  void *opcode = 0;
+  while (/*(rozmiar / 32) >= pointer /*this does not work too* *//* 1) {
+    opcode = (&buff + pointer);
+    decode((__int128_t *)opcode);
+    //    printf("decoded\n");
+    interpret();
+    pointer += 16;
+  }
+  * /
+      //
+      /*  printf("debugging info...\n");
+        printf("reg0 = %d\n", regvs[0]);
+        printf("reg1 = %d\n", regvs[1]);
+        printf("reg2 = %d\n", regvs[2]);
+  fclose(fp);*/
+  //
   return 0;
 };
