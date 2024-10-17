@@ -74,10 +74,7 @@ void interpret() {
 int main() {
   memset(regvs, 0, sizeof(regvs));
   __int128_t bytecode[] = {
-      0x5001, // LOADI_OP, reg1 = 3
-      0x5102, // LOADI_OP, reg2 = 5
-      0x4100, // PRINT_OP, print reg1
-      0x7000  // DONE_OP
+
   };
   for (int i = 0; i < sizeof(bytecode) / sizeof(bytecode[0]); i++) {
     decode(&bytecode[i]);
