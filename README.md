@@ -6,4 +6,4 @@ _Don't use "real_interpret_bytecode_interpret.c" - this is not ready yet - it wi
 
 I make this project, because i need some knowlage about pseudo-bytecode interpreter, so this propably will work, but i can't promise anything
 
-As all my repos - it's not meant to work - I make this project, because it's fun.
+As all my repos - it's not meant to work (it works now, but i can't promise anything).
