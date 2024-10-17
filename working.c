@@ -50,7 +50,7 @@ void interpret() {
     break;
   case LOADI_OP:
     //    reg0 = reg2; // reg is now functioning as imm value
-    regvs[reg1] = reg3;
+    regvs[reg1] = regvs[reg3];
     break;
   case SWAP_OP:
     /* reg0 += reg1;
@@ -74,8 +74,9 @@ void interpret() {
 int main() {
   memset(regvs, 0, sizeof(regvs));
   __int128_t bytecode[] = {
-      0x5001, // LOADI_OP, reg1 = 3
-      0x5102, // LOADI_OP, reg2 = 5
+      0x5105, // LOADI_OP, reg1 = 3
+      0x5205, // LOADI_OP, reg2 = 5
+      0x0112, // IMUL_OP, reg1 = reg1 * reg2
       0x4100, // PRINT_OP, print reg1
       0x7000  // DONE_OP
   };
