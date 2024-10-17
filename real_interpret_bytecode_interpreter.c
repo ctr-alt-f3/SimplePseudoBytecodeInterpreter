@@ -73,14 +73,7 @@ void interpret() {
 }
 int main() {
   memset(regvs, 0, sizeof(regvs));
-  __int128_t bytecode[] = {
-      // put here your code;
-      0x7000,
-  };
-  for (int i = 0; i < sizeof(bytecode) / sizeof(bytecode[0]); i++) {
-    decode(&bytecode[i]);
-    interpret();
-  }
+
   //
   return 0;
 };
