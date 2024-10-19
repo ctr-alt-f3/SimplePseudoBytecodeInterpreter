@@ -7,16 +7,16 @@ __int128_t regvs[3];
 int instruction = 0;
 int reg3 = 0; // also functioning as imm value
 int reg1 = 0;
-int reg2 = 0;
+int reg2 = 0; 
 enum OPCODES {
-  ADD_OP = 0,
-  IMUL_OP = 1,
-  SUB_OP = 2,
-  DIV_OP = 3,
-  PRINT_OP = 4,
-  LOADI_OP = 5,
-  SWAP_OP = 6,
-  DONE_OP = 7,
+DONE_OP = 0,
+	ADD_OP = 1,
+  IMUL_OP = 2,
+  SUB_OP = 3,
+  DIV_OP = 4,
+  PRINT_OP = 5,
+  LOADI_OP = 6,
+  SWAP_OP = 7,
 };
 void decode(__int128_t *bytecode) {
   if (bytecode == NULL) {
@@ -67,7 +67,7 @@ void interpret() {
     printf("reg2 = %d\n", regvs[2]);
     break;
   default:
-    printf("interpretation failed - wrong opcode - %d\n", instruction);
+    printf("interpretation failed - wrong opcode - %x\n", instruction);
     break;
   }
 }
