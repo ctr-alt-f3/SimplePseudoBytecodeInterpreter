@@ -7,10 +7,10 @@ __int128_t regvs[3];
 int instruction = 0;
 int reg3 = 0; // also functioning as imm value
 int reg1 = 0;
-int reg2 = 0; 
+int reg2 = 0;
 enum OPCODES {
-DONE_OP = 0,
-	ADD_OP = 1,
+  DONE_OP = 0,
+  ADD_OP = 1,
   IMUL_OP = 2,
   SUB_OP = 3,
   DIV_OP = 4,
@@ -43,7 +43,12 @@ void interpret() {
     break;
   case DIV_OP:
     //  reg0 = reg1 / reg2;
+    if (reg3 == 0) {
+      printf("cannot divide by zero\n");
+    }
+    goto end;
     regvs[reg1] = regvs[reg2] / regvs[reg3];
+  end:
     break;
   case PRINT_OP:
     printf("your register has value of: %d\n", regvs[reg1]);
@@ -62,9 +67,9 @@ void interpret() {
     break;
   case DONE_OP:
     printf("Interpretation done successfully\nhere are register values:\n");
-    printf("reg0 = %d\n", regvs[0]);
+    /* printf("reg0 = %d\n", regvs[0]);
     printf("reg1 = %d\n", regvs[1]);
-    printf("reg2 = %d\n", regvs[2]);
+    printf("reg2 = %d\n", regvs[2]);*/
     break;
   default:
     printf("interpretation failed - wrong opcode - %x\n", instruction);
@@ -75,7 +80,13 @@ int main() {
   memset(regvs, 0, sizeof(regvs));
   __int128_t bytecode[] = {
       // put here your code;
-      0x7000,
+      0x6005, // LOADI_OP, reg1 = 0, reg3 = 5 (regvs[0] = 5)
+      0x6102, // LOADI_OP, reg1 = 1, reg3 = 2 (regvs[1] = 2)
+      0x1010, // ADD_OP,  reg1 = 0, reg2 = 1 (regvs[0] += regvs[1])
+      0x5000, // PRINT_OP, reg1 = 0 print register 0
+      0x7010, // SWAP_OP, reg1 = 0, reg2 = 1 (swap register 0 with register 1)
+      0x5000, // PRINT_OP, reg1 = 0 (print regvs[0])
+      0x0000, // DONE_OP (end program)
   };
   for (int i = 0; i < sizeof(bytecode) / sizeof(bytecode[0]); i++) {
     decode(&bytecode[i]);
