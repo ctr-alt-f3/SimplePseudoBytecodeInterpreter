@@ -79,7 +79,7 @@ void interpret() {
 int main() {
   memset(regvs, 0, sizeof(regvs));
   __int128_t bytecode[] = {
-      // put here your code;
+      // put your opcodes here
       0x6005, // LOADI_OP, reg1 = 0, reg3 = 5 (regvs[0] = 5)
       0x6102, // LOADI_OP, reg1 = 1, reg3 = 2 (regvs[1] = 2)
       0x1010, // ADD_OP,  reg1 = 0, reg2 = 1 (regvs[0] += regvs[1])
@@ -88,7 +88,8 @@ int main() {
       0x5000, // PRINT_OP, reg1 = 0 (print regvs[0])
       0x0000, // DONE_OP (end program)
   };
-  for (int i = 0; i < sizeof(bytecode) / sizeof(bytecode[0]); i++) {
+  int h = sizeof(bytecode) / sizeof(bytecode[0]);
+  for (int i = 0; i < h; i++) {
     decode(&bytecode[i]);
     interpret();
   }
